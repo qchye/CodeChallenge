@@ -88,8 +88,13 @@ public class CodeChallenge {
                 }
             }
 
-            // Task 4:
-
+            // Task 4: The 1.5 hour period with least cars
+            List<String> LeastConsecutive = LeastThreeConsecutive(inputArray);
+            System.out.println("Task 4:");
+            for(String s : LeastConsecutive)
+            {
+                System.out.println(s);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -124,6 +129,15 @@ public class CodeChallenge {
         HashMap<Integer, String> map = m.map;
 
         return map;
+    }
+
+    // Task 4 fork-join function
+    public static List<String> LeastThreeConsecutive(List<String> x) {
+        LeastThreeConsecutive m = new LeastThreeConsecutive(x, 0, x.size());
+        ForkJoinPool.commonPool().invoke(m);
+        List<String> result = m.result;
+
+        return result;
     }
 
     // Fork-join function to read the whole file
