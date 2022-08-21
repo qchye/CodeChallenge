@@ -3,7 +3,9 @@ import java.util.List;
 import java.util.concurrent.RecursiveAction;
 
 public class OccuranceMap extends RecursiveAction {
-    static int SEQUENTIAL_THRESHOLD = 8;
+    static int SEQUENTIAL_THRESHOLD = 110000;
+    static int COUNT_BEGIN_INDEX = 20;
+    static int DAY_END_INDEX = 19;
     int lo;
     int hi;
     List<String> arr;
@@ -18,9 +20,9 @@ public class OccuranceMap extends RecursiveAction {
     protected void compute() {
         if (hi - lo <= SEQUENTIAL_THRESHOLD) {
             for (int i = lo; i < hi; i++) {
-                String[] splitString = arr.get(i).split(" ");
-                String Day = splitString[0];
-                Integer carCount = Integer.parseInt(splitString[1].trim());
+                String wholeString = arr.get(i);
+                String Day = wholeString.substring(0, DAY_END_INDEX);
+                Integer carCount = Integer.parseInt(wholeString.substring(COUNT_BEGIN_INDEX).trim());
                 map.put(carCount, Day);
             }
         } else {

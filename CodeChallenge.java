@@ -19,6 +19,7 @@ public class CodeChallenge {
     private static List<String> inputArray = new ArrayList<String>();
     private static HashMap<String, Integer> map = new HashMap<>(); //For Task 1,2
     private static HashMap<Integer, String> occuranceMap = new HashMap<>(); //For Task 3
+    private static List<String> leastThreeConsecutive = new ArrayList<>(); // For Task 4
     private static final Integer TOP_THREE_INDEX = 3;
 
     public static void main(String[] args) throws IOException {
@@ -43,10 +44,8 @@ public class CodeChallenge {
             /* For Task 1 and Task 2, do Task 2 first, then re-use the sub total result (output as a map having subtotal records),
             Add them up to get the total sum for Task 1
             And continue to display result for Task 2*/
-            startTime = System.currentTimeMillis();
+            
             map = DaySumMap(inputArray);
-            endTime = System.currentTimeMillis();
-            // System.out.println("Total Day Sum execution time: " + (endTime - startTime) +"ms");
 
             /*Task 1: Output the numbers of cars seen in total*/
             TotalSum(map);
@@ -54,6 +53,7 @@ public class CodeChallenge {
             /*Task2: Sequence of line contains a date 
             Use tree map since tree map can do the sort while inserting the map  */
             TreeMap<String, Integer> sorted = new TreeMap<>();
+
             sorted.putAll(map);
 
             // Display the TreeMap which is naturally sorted
@@ -89,13 +89,12 @@ public class CodeChallenge {
             }
 
             // Task 4: The 1.5 hour period with least cars
-            List<String> LeastConsecutive = LeastThreeConsecutive(inputArray);
+            leastThreeConsecutive = LeastThreeConsecutive(inputArray);
             System.out.println("Task 4:");
-            for(String s : LeastConsecutive)
+            for(String s : leastThreeConsecutive)
             {
                 System.out.println(s);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -3,9 +3,10 @@ import java.util.List;
 import java.util.concurrent.RecursiveAction;
 
 public class LeastThreeConsecutive extends RecursiveAction {
-    static int SEQUENTIAL_THRESHOLD = 12;
+    static int SEQUENTIAL_THRESHOLD = 110000;
     static int PEEK_AHEAD_ONE_INDEX = 1;
     static int PEEK_AHEAD_TWO_INDEX = 2;
+    static int COUNT_BEGIN_INDEX = 20;
     int lo;
     int hi;
     List<String> arr;
@@ -57,9 +58,9 @@ public class LeastThreeConsecutive extends RecursiveAction {
     }
 
     private Integer PartialSum(String s1, String s2, String s3){
-        Integer carCount1 = Integer.parseInt(s1.split(" ")[1].trim());
-        Integer carCount2 = Integer.parseInt(s2.split(" ")[1].trim());
-        Integer carCount3 = Integer.parseInt(s3.split(" ")[1].trim());
+        Integer carCount1 = Integer.parseInt(s1.substring(COUNT_BEGIN_INDEX).trim());
+        Integer carCount2 = Integer.parseInt(s2.substring(COUNT_BEGIN_INDEX).trim());
+        Integer carCount3 = Integer.parseInt(s3.substring(COUNT_BEGIN_INDEX).trim());
 
         Integer Total = carCount1 + carCount2 + carCount3;
 
